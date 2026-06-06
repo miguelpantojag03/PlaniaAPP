@@ -12,8 +12,8 @@ import com.plania.repository.UserRepository;
 import com.plania.security.CustomUserDetails;
 import com.plania.security.JwtService;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -75,7 +75,7 @@ public class AuthService {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(normalizedEmail, request.password())
             );
-        } catch (BadCredentialsException exception) {
+        } catch (AuthenticationException exception) {
             throw new BadRequestException("Invalid email or password");
         }
 
