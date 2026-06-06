@@ -107,6 +107,7 @@ const PlaniaApi = (() => {
             method: "POST",
             body: JSON.stringify(payload)
         }),
+        getMoodHistory: () => request("/moods/history"),
         completeTask: (id) => request(`/tasks/${id}/complete`, {
             method: "PATCH"
         }),

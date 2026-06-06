@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil | Plania</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="app-body">
+    <aside class="app-sidebar" aria-label="Navegacion principal">
+        <a class="brand app-brand" href="dashboard.html"><span class="brand-mark">P</span><span>Plania</span></a>
+        <nav class="sidebar-nav">
+            <a class="nav-item" href="dashboard.html">Inicio</a>
+            <a class="nav-item" href="tasks.html">Tareas</a>
+            <a class="nav-item" href="stats.html">Estadisticas</a>
+            <a class="nav-item active" href="profile.html">Perfil</a>
+        </nav>
+        <button id="logoutButton" class="button button-ghost logout-button" type="button">Cerrar sesion</button>
+    </aside>
+
+    <main class="app-main">
+        <header class="dashboard-header">
+            <div>
+                <p class="eyebrow">Cuenta</p>
+                <h1>Tu perfil de Plania.</h1>
+                <p class="dashboard-date">Consulta tus datos, puntos y racha actual.</p>
+            </div>
+        </header>
+
+        <section id="profileLoading" class="loading-state">
+            <span class="page-spinner" aria-hidden="true"></span>
+            <p>Cargando perfil...</p>
+        </section>
+
+        <section id="profileError" class="empty-state hidden">
+            <h2>No pudimos cargar tu perfil</h2>
+            <p>Intenta nuevamente en unos segundos.</p>
+            <button id="retryProfile" class="button button-primary" type="button">Intentar de nuevo</button>
+        </section>
+
+        <section id="profileContent" class="profile-grid hidden">
+            <article class="panel profile-card">
+                <div class="profile-avatar" id="profileInitial">P</div>
+                <h2 id="profileName">Usuario</h2>
+                <p id="profileEmail">correo@plania.com</p>
+                <div class="profile-meta">
+                    <span id="createdAt">Cuenta creada</span>
+                    <span id="pointsLabel">0 puntos</span>
+                    <span id="streakLabel">0 dias de racha</span>
+                </div>
+                <button class="button button-danger" type="button" data-logout>Cerrar sesion</button>
+            </article>
+
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <p class="eyebrow">Editar</p>
+                        <h2>Datos personales</h2>
+                    </div>
+                </div>
+                <form id="profileForm" class="profile-form" novalidate>
+                    <div class="form-field">
+                        <label for="name">Nombre</label>
+                        <input id="name" name="name" type="text">
+                        <small class="field-error" data-error-for="name"></small>
+                    </div>
+                    <div class="form-field">
+                        <label for="email">Correo</label>
+                        <input id="email" name="email" type="email">
+                        <small class="field-error" data-error-for="email"></small>
+                    </div>
+                    <button class="button button-primary" type="submit">
+                        <span class="button-text">Guardar cambios</span>
+                        <span class="button-loader" aria-hidden="true"></span>
+                    </button>
+                </form>
+            </article>
+        </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegacion movil">
+        <a href="dashboard.html">Inicio</a>
+        <a href="tasks.html">Tareas</a>
+        <a href="stats.html">Stats</a>
+        <a class="active" href="profile.html">Perfil</a>
+    </nav>
+
+    <div id="toastHost" class="toast-host" aria-live="polite"></div>
+    <script src="js/storage.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/session.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

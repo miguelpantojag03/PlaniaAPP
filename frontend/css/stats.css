@@ -1,0 +1,60 @@
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.metric-block {
+    display: grid;
+    gap: 8px;
+    min-height: 132px;
+    align-content: center;
+}
+
+.metric-block strong {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1;
+}
+
+.metric-block span {
+    color: var(--color-muted);
+    font-weight: 700;
+}
+
+.bars-list {
+    display: grid;
+    gap: 14px;
+}
+
+.bar-row {
+    display: grid;
+    gap: 8px;
+}
+
+.bar-label {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.bar-track {
+    height: 12px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #eef2ff;
+}
+
+.bar-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+}
+
+@media (max-width: 980px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}

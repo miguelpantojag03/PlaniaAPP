@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadisticas | Plania</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/stats.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="app-body">
+    <aside class="app-sidebar" aria-label="Navegacion principal">
+        <a class="brand app-brand" href="dashboard.html"><span class="brand-mark">P</span><span>Plania</span></a>
+        <nav class="sidebar-nav">
+            <a class="nav-item" href="dashboard.html">Inicio</a>
+            <a class="nav-item" href="tasks.html">Tareas</a>
+            <a class="nav-item active" href="stats.html">Estadisticas</a>
+            <a class="nav-item" href="profile.html">Perfil</a>
+        </nav>
+        <button id="logoutButton" class="button button-ghost logout-button" type="button">Cerrar sesion</button>
+    </aside>
+
+    <main class="app-main">
+        <header class="dashboard-header">
+            <div>
+                <p class="eyebrow">Progreso</p>
+                <h1>Estadisticas claras para mejorar tu ritmo.</h1>
+                <p class="dashboard-date">Una lectura simple de tus tareas, puntos, racha y estado de animo.</p>
+            </div>
+        </header>
+
+        <section id="statsLoading" class="loading-state">
+            <span class="page-spinner" aria-hidden="true"></span>
+            <p>Cargando estadisticas...</p>
+        </section>
+
+        <section id="statsError" class="empty-state hidden">
+            <h2>No pudimos cargar tus estadisticas</h2>
+            <p>Verifica que el backend este activo e intenta nuevamente.</p>
+            <button id="retryStats" class="button button-primary" type="button">Intentar de nuevo</button>
+        </section>
+
+        <section id="statsContent" class="dashboard-content hidden">
+            <div class="summary-grid">
+                <article class="summary-card"><span class="summary-label">Hoy</span><strong id="completedToday">0</strong><small>Completadas</small></article>
+                <article class="summary-card"><span class="summary-label">Semana</span><strong id="completedWeek">0</strong><small>Completadas</small></article>
+                <article class="summary-card"><span class="summary-label">Puntos</span><strong id="totalPoints">0</strong><small>Totales</small></article>
+                <article class="summary-card"><span class="summary-label">Racha</span><strong id="currentStreak">0</strong><small>Dias</small></article>
+            </div>
+
+            <div class="stats-grid">
+                <section class="panel">
+                    <div class="panel-header">
+                        <div>
+                            <p class="eyebrow">Promedio</p>
+                            <h2>Tareas completadas</h2>
+                        </div>
+                    </div>
+                    <div class="metric-block">
+                        <strong id="averageCompleted">0</strong>
+                        <span>promedio diario aproximado</span>
+                    </div>
+                </section>
+
+                <section class="panel">
+                    <div class="panel-header">
+                        <div>
+                            <p class="eyebrow">Categoria</p>
+                            <h2>Mas trabajada</h2>
+                        </div>
+                    </div>
+                    <div class="metric-block">
+                        <strong id="topCategory">Sin datos</strong>
+                        <span>segun tareas completadas</span>
+                    </div>
+                </section>
+
+                <section class="panel">
+                    <div class="panel-header">
+                        <div>
+                            <p class="eyebrow">Animo</p>
+                            <h2>Mas frecuente</h2>
+                        </div>
+                    </div>
+                    <div class="metric-block">
+                        <strong id="topMood">Sin datos</strong>
+                        <span>segun historial registrado</span>
+                    </div>
+                </section>
+            </div>
+
+            <section class="panel">
+                <div class="panel-header">
+                    <div>
+                        <p class="eyebrow">Distribucion</p>
+                        <h2>Tareas por estado</h2>
+                    </div>
+                </div>
+                <div id="statusBars" class="bars-list"></div>
+            </section>
+        </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegacion movil">
+        <a href="dashboard.html">Inicio</a>
+        <a href="tasks.html">Tareas</a>
+        <a class="active" href="stats.html">Stats</a>
+        <a href="profile.html">Perfil</a>
+    </nav>
+
+    <div id="toastHost" class="toast-host" aria-live="polite"></div>
+    <script src="js/storage.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/session.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/stats.js"></script>
+</body>
+</html>

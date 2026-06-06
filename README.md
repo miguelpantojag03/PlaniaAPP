@@ -289,7 +289,7 @@ El dashboard reutiliza el algoritmo de recomendacion. Si no hay tareas pendiente
 
 ## Frontend
 
-Fase 5 del frontend: API y sesion con fetch centralizado, token JWT, proteccion de rutas, logout reutilizable y manejo de sesion expirada.
+Fase 6 del frontend: estadisticas y perfil con metricas calculadas desde tareas, historial de animo y datos del usuario.
 
 Archivos creados:
 
@@ -302,6 +302,8 @@ frontend/
   css/
     auth.css
     dashboard.css
+    profile.css
+    stats.css
     tasks.css
     styles.css
     responsive.css
@@ -309,14 +311,18 @@ frontend/
     api.js
     auth.js
     dashboard.js
+    profile.js
     session.js
+    stats.js
     tasks.js
     storage.js
     ui.js
   index.html
   dashboard.html
   login.html
+  profile.html
   register.html
+  stats.html
   tasks.html
 ```
 
@@ -399,3 +405,14 @@ frontend/js/session.js
 `storage.js` guarda y lee `plania_token` y `plania_user` desde `localStorage`.
 
 `session.js` protege paginas privadas, redirige si no hay token, limpia la sesion si el backend responde `401` y reutiliza el logout.
+
+Estadisticas y perfil:
+
+```text
+frontend/stats.html
+frontend/profile.html
+```
+
+`stats.html` calcula tareas completadas hoy, completadas en la semana, puntos, racha, promedio diario, categoria mas trabajada, estado de animo mas frecuente y distribucion por estado.
+
+`profile.html` muestra nombre, correo, fecha de creacion, puntos, racha, permite editar nombre/correo y cerrar sesion.
