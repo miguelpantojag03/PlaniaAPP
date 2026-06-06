@@ -2,8 +2,7 @@ let allTasks = [];
 let taskToDelete = null;
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (!PlaniaStorage.isAuthenticated()) {
-        window.location.href = "login.html";
+    if (!PlaniaSession.requireAuth()) {
         return;
     }
 
@@ -12,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function bindEvents() {
-    document.querySelector("#logoutButton")?.addEventListener("click", logout);
+    PlaniaSession.bindLogoutButtons();
     document.querySelector("#retryTasks")?.addEventListener("click", loadTasks);
     document.querySelector("#openCreateTask")?.addEventListener("click", openCreateModal);
     document.querySelector("#floatingCreateTask")?.addEventListener("click", openCreateModal);
@@ -305,11 +304,6 @@ function setTasksState(state) {
     document.querySelector("#tasksLoading").classList.toggle("hidden", state !== "loading");
     document.querySelector("#tasksError").classList.toggle("hidden", state !== "error");
     document.querySelector("#tasksContent").classList.toggle("hidden", state !== "content");
-}
-
-function logout() {
-    PlaniaStorage.clearSession();
-    window.location.href = "login.html";
 }
 
 function statusLabel(status) {

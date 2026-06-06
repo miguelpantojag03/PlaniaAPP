@@ -7,6 +7,10 @@ const PlaniaStorage = (() => {
         localStorage.setItem(USER_KEY, JSON.stringify(authResponse.user));
     }
 
+    function saveUser(user) {
+        localStorage.setItem(USER_KEY, JSON.stringify(user));
+    }
+
     function getToken() {
         return localStorage.getItem(TOKEN_KEY);
     }
@@ -27,6 +31,7 @@ const PlaniaStorage = (() => {
 
     return {
         saveSession,
+        saveUser,
         getToken,
         getUser,
         clearSession,

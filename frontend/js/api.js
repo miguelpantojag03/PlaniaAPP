@@ -3,34 +3,77 @@ const PlaniaApi = (() => {
 
     async function request(path, options = {}) {
         const token = PlaniaStorage.getToken();
-        const headers = {
-            "Content-Type": "application/json",
-            ...(options.headers || {})
-        };
+        const headers = buildHeaders(options.headers || {}, token);
+
+        let response;
+        try {
+            response = await fetch(`${API_BASE_URL}${path}`, {
+                ...options,
+                headers
+            });
+        } catch (error) {
+            throw {
+                status: 0,
+                message: "No pudimos conectar con el servidor. Verifica que el backend este corriendo."
+            };
+        }
+
+        const data = await parseResponse(response);
+
+        if (response.status === 401) {
+            if (window.PlaniaSession) {
+                PlaniaSession.expireSession();
+            } else {
+                PlaniaStorage.clearSession();
+                window.location.href = "login.html";
+            }
+            return null;
+        }
+
+        if (!response.ok) {
+            throw normalizeError(data, response);
+        }
+
+        return data;
+    }
+
+    function buildHeaders(customHeaders, token) {
+        const headers = { ...customHeaders };
+
+        if (!headers["Content-Type"] && !headers["content-type"]) {
+            headers["Content-Type"] = "application/json";
+        }
 
         if (token) {
             headers.Authorization = `Bearer ${token}`;
         }
 
-        const response = await fetch(`${API_BASE_URL}${path}`, {
-            ...options,
-            headers
-        });
+        return headers;
+    }
 
-        if (response.status === 401) {
-            PlaniaStorage.clearSession();
-            window.location.href = "login.html";
+    async function parseResponse(response) {
+        if (response.status === 204) {
             return null;
         }
 
-        const hasBody = response.status !== 204;
-        const data = hasBody ? await response.json() : null;
+        const contentType = response.headers.get("content-type") || "";
 
-        if (!response.ok) {
-            throw data || { message: "No pudimos completar la solicitud." };
+        if (contentType.includes("application/json")) {
+            return response.json();
         }
 
-        return data;
+        const text = await response.text();
+        return text ? { message: text } : null;
+    }
+
+    function normalizeError(data, response) {
+        return {
+            status: data?.status || response.status,
+            error: data?.error || response.statusText,
+            message: data?.message || "No pudimos completar la solicitud.",
+            path: data?.path,
+            validationErrors: data?.validationErrors
+        };
     }
 
     return {
@@ -43,6 +86,10 @@ const PlaniaApi = (() => {
             body: JSON.stringify(payload)
         }),
         getCurrentUser: () => request("/users/me"),
+        updateCurrentUser: (payload) => request("/users/me", {
+            method: "PUT",
+            body: JSON.stringify(payload)
+        }),
         getDashboard: () => request("/dashboard/today"),
         getTasks: () => request("/tasks"),
         createTask: (payload) => request("/tasks", {

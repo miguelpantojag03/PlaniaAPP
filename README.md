@@ -289,7 +289,7 @@ El dashboard reutiliza el algoritmo de recomendacion. Si no hay tareas pendiente
 
 ## Frontend
 
-Fase 4 del frontend: gestion de tareas con listado, filtros, buscador, crear, editar, eliminar, completar, aplazar y modales.
+Fase 5 del frontend: API y sesion con fetch centralizado, token JWT, proteccion de rutas, logout reutilizable y manejo de sesion expirada.
 
 Archivos creados:
 
@@ -309,6 +309,7 @@ frontend/
     api.js
     auth.js
     dashboard.js
+    session.js
     tasks.js
     storage.js
     ui.js
@@ -384,3 +385,17 @@ PATCH  /api/tasks/{id}/postpone
 ```
 
 Incluye buscador, filtros por estado, prioridad, categoria y fecha, modal de crear/editar tarea, confirmacion de eliminacion y boton flotante en movil.
+
+API y sesion:
+
+```text
+frontend/js/api.js
+frontend/js/storage.js
+frontend/js/session.js
+```
+
+`api.js` centraliza las peticiones a `http://localhost:8080/api`, agrega automaticamente `Authorization: Bearer TOKEN`, maneja errores de red, respuestas sin JSON y errores HTTP.
+
+`storage.js` guarda y lee `plania_token` y `plania_user` desde `localStorage`.
+
+`session.js` protege paginas privadas, redirige si no hay token, limpia la sesion si el backend responde `401` y reutiliza el logout.

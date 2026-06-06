@@ -7,13 +7,12 @@ const moodOptions = [
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (!PlaniaStorage.isAuthenticated()) {
-        window.location.href = "login.html";
+    if (!PlaniaSession.requireAuth()) {
         return;
     }
 
     document.querySelector("#retryButton")?.addEventListener("click", loadDashboard);
-    document.querySelector("#logoutButton")?.addEventListener("click", logout);
+    PlaniaSession.bindLogoutButtons();
     loadDashboard();
 });
 
@@ -178,11 +177,6 @@ function setDashboardState(state) {
     document.querySelector("#dashboardLoading").classList.toggle("hidden", state !== "loading");
     document.querySelector("#dashboardError").classList.toggle("hidden", state !== "error");
     document.querySelector("#dashboardContent").classList.toggle("hidden", state !== "content");
-}
-
-function logout() {
-    PlaniaStorage.clearSession();
-    window.location.href = "login.html";
 }
 
 function priorityBadge(priority) {

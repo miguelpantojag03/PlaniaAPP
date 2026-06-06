@@ -2,9 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.querySelector("#loginForm");
     const registerForm = document.querySelector("#registerForm");
 
-    if (PlaniaStorage.isAuthenticated() && (loginForm || registerForm)) {
-        window.location.href = "dashboard.html";
-        return;
+    if (loginForm || registerForm) {
+        PlaniaSession.redirectIfAuthenticated();
+    }
+
+    if (new URLSearchParams(window.location.search).get("expired") === "1") {
+        PlaniaUI.showToast("Tu sesion expiro. Inicia sesion nuevamente.", "error");
     }
 
     if (loginForm) {
