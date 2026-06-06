@@ -1,12 +1,29 @@
 # Plania
 
-Plania es una agenda inteligente personalizada. La aplicacion no solo guarda tareas: tambien ayudara al usuario a decidir que hacer primero segun prioridad, fecha limite, energia requerida, estado de animo y habitos.
+Plania es una agenda inteligente personalizada. No solo guarda tareas: ayuda al usuario a decidir que hacer primero segun prioridad, fecha limite, energia requerida, estado de animo, tiempo estimado y aplazamientos.
 
-## Fase Actual
+Frase principal:
 
-Fase 6: dashboard diario con saludo, fecha, estado de animo, conteos de tareas, puntos, racha, recomendacion y tareas del dia.
+```text
+Plania no solo te recuerda tus tareas, te ayuda a decidir que hacer primero.
+```
+
+## Estado Del Proyecto
+
+Backend y frontend base integrados.
+
+- Backend Spring Boot con API REST, JPA, PostgreSQL, JWT, tareas, moods, recomendaciones y dashboard.
+- Frontend HTML, CSS y JavaScript puro con portada, autenticacion, dashboard, tareas, estadisticas, perfil, responsive y manejo de sesion.
+
+Repositorio:
+
+```text
+https://github.com/miguelpantojag03/PlaniaAPP.git
+```
 
 ## Tecnologias
+
+Backend:
 
 - Java 21
 - Spring Boot
@@ -16,146 +33,168 @@ Fase 6: dashboard diario con saludo, fecha, estado de animo, conteos de tareas, 
 - Jakarta Validation
 - PostgreSQL
 - Maven
+- JWT
+
+Frontend:
+
+- HTML5
+- CSS3 moderno
+- JavaScript puro
+- LocalStorage
+- Fetch API
+- Responsive design
 
 ## Estructura
 
 ```text
-backend/
-  src/main/java/com/plania/
-    config/
-    controller/
-    dto/
-    exception/
-    mapper/
-    model/
-    repository/
-    security/
-    service/
-  src/main/resources/
-    application.properties
-    db/init.sql
+Plania/
+  backend/
+    pom.xml
+    src/main/java/com/plania/
+      config/
+      controller/
+      dto/
+      exception/
+      mapper/
+      model/
+      repository/
+      security/
+      service/
+    src/main/resources/
+      application.properties
+      db/init.sql
+
+  frontend/
+    assets/images/plania-hero.png
+    css/
+      auth.css
+      dashboard.css
+      profile.css
+      responsive.css
+      stats.css
+      styles.css
+      tasks.css
+    js/
+      api.js
+      auth.js
+      dashboard.js
+      profile.js
+      session.js
+      stats.js
+      storage.js
+      tasks.js
+      ui.js
+    index.html
+    login.html
+    register.html
+    dashboard.html
+    tasks.html
+    stats.html
+    profile.html
 ```
 
-## Ejecutar El Backend
+## Ejecutar Backend
 
-1. Crear una base de datos PostgreSQL llamada `plania_db`.
-2. Revisar usuario y contrasena en `backend/src/main/resources/application.properties`.
-3. Entrar a la carpeta `backend`.
-4. Ejecutar:
+1. Crear la base de datos en PostgreSQL:
+
+```sql
+CREATE DATABASE plania_db;
+```
+
+2. Revisar credenciales en:
+
+```text
+backend/src/main/resources/application.properties
+```
+
+Configuracion actual:
+
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/plania_db
+spring.datasource.username=postgres
+spring.datasource.password=postgres
+```
+
+3. Ejecutar backend:
 
 ```bash
+cd C:\Users\migue\Desktop\Plania\backend
 mvn spring-boot:run
 ```
 
-Para crear un usuario demo y categorias iniciales, ejecutar con perfil `dev`:
+Con usuario demo y categorias iniciales:
 
 ```bash
+cd C:\Users\migue\Desktop\Plania\backend
 mvn spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
 Usuario demo:
 
-- Email: `demo@plania.com`
-- Password: `demo12345`
-
-## Probar Autenticacion
-
-Registrar usuario:
-
-```http
-POST http://localhost:8080/api/auth/register
-Content-Type: application/json
+```text
+Email: demo@plania.com
+Password: demo12345
 ```
 
-```json
-{
-  "name": "Juan Perez",
-  "email": "juan@plania.com",
-  "password": "password123"
-}
+## Ejecutar Frontend
+
+En otra terminal:
+
+```bash
+cd C:\Users\migue\Desktop\Plania\frontend
+python -m http.server 5500 --bind 127.0.0.1
 ```
 
-Iniciar sesion:
-
-```http
-POST http://localhost:8080/api/auth/login
-Content-Type: application/json
-```
-
-```json
-{
-  "email": "juan@plania.com",
-  "password": "password123"
-}
-```
-
-La respuesta incluye un token. Para endpoints protegidos se usa:
+Abrir:
 
 ```text
-Authorization: Bearer TOKEN_AQUI
+http://127.0.0.1:5500/
 ```
 
-Consultar usuario actual:
-
-```http
-GET http://localhost:8080/api/users/me
-Authorization: Bearer TOKEN_AQUI
-```
-
-Actualizar usuario actual:
-
-```http
-PUT http://localhost:8080/api/users/me
-Content-Type: application/json
-Authorization: Bearer TOKEN_AQUI
-```
-
-```json
-{
-  "name": "Juan Perez Actualizado",
-  "email": "juan.actualizado@plania.com"
-}
-```
-
-## Probar CRUD De Tareas
-
-Crear tarea:
-
-```http
-POST http://localhost:8080/api/tasks
-Content-Type: application/json
-Authorization: Bearer TOKEN_AQUI
-```
-
-```json
-{
-  "title": "Estudiar para el parcial de calculo",
-  "description": "Repasar limites, derivadas y ejercicios del taller",
-  "dueDate": "2026-06-07",
-  "dueTime": "18:00:00",
-  "priority": "HIGH",
-  "energyRequired": "MEDIUM",
-  "estimatedMinutes": 90,
-  "categoryId": 1
-}
-```
-
-Endpoints de autenticacion:
+Pantallas:
 
 ```text
-POST   /api/auth/register
-POST   /api/auth/login
-POST   /api/auth/logout
+http://127.0.0.1:5500/index.html
+http://127.0.0.1:5500/login.html
+http://127.0.0.1:5500/register.html
+http://127.0.0.1:5500/dashboard.html
+http://127.0.0.1:5500/tasks.html
+http://127.0.0.1:5500/stats.html
+http://127.0.0.1:5500/profile.html
 ```
 
-Endpoints de usuario:
+## Flujo De Prueba Recomendado
+
+1. Iniciar PostgreSQL.
+2. Crear `plania_db`.
+3. Ejecutar backend con perfil `dev`.
+4. Ejecutar frontend en puerto `5500`.
+5. Abrir `login.html`.
+6. Iniciar sesion con `demo@plania.com` y `demo12345`, o crear cuenta.
+7. Crear tareas desde `tasks.html`.
+8. Registrar estado de animo desde `dashboard.html`.
+9. Revisar recomendacion inteligente.
+10. Completar o aplazar tareas.
+11. Revisar estadisticas y perfil.
+
+## API Principal
+
+Auth:
 
 ```text
-GET    /api/users/me
-PUT    /api/users/me
+POST /api/auth/register
+POST /api/auth/login
+POST /api/auth/logout
 ```
 
-Endpoints de tareas:
+Users:
+
+```text
+GET /api/users/me
+PUT /api/users/me
+```
+
+Tasks:
 
 ```text
 GET    /api/tasks
@@ -170,74 +209,49 @@ PATCH  /api/tasks/{id}/complete
 PATCH  /api/tasks/{id}/postpone
 ```
 
-## Probar Estado De Animo
-
-Registrar o actualizar el estado de animo del dia:
-
-```http
-POST http://localhost:8080/api/moods
-Content-Type: application/json
-Authorization: Bearer TOKEN_AQUI
-```
-
-```json
-{
-  "moodType": "TIRED",
-  "note": "Dormí poco, pero quiero avanzar con tareas pequeñas"
-}
-```
-
-Tambien puedes registrar un dia especifico que no sea futuro:
-
-```json
-{
-  "moodType": "ENERGETIC",
-  "note": "Buen dia para tareas pesadas",
-  "date": "2026-06-06"
-}
-```
-
-Consultar estado de animo de hoy:
-
-```http
-GET http://localhost:8080/api/moods/today
-Authorization: Bearer TOKEN_AQUI
-```
-
-Consultar historial:
-
-```http
-GET http://localhost:8080/api/moods/history
-Authorization: Bearer TOKEN_AQUI
-```
-
-Valores permitidos para `moodType`:
+Mood:
 
 ```text
-ENERGETIC
-NORMAL
-TIRED
-STRESSED
-UNMOTIVATED
+POST /api/moods
+GET  /api/moods/today
+GET  /api/moods/history
 ```
 
-## Probar Recomendaciones
+Recommendations:
 
-Obtener lista de tareas activas ordenadas por recomendacion:
-
-```http
-GET http://localhost:8080/api/recommendations/today
-Authorization: Bearer TOKEN_AQUI
+```text
+GET /api/recommendations/today
+GET /api/recommendations/best-task
 ```
 
-Obtener la mejor tarea para hacer primero:
+Dashboard:
 
-```http
-GET http://localhost:8080/api/recommendations/best-task
-Authorization: Bearer TOKEN_AQUI
+```text
+GET /api/dashboard/today
 ```
 
-El algoritmo calcula `smartScore` para tareas `PENDING` y `POSTPONED`.
+## Autenticacion
+
+El backend usa JWT. Al iniciar sesion o registrarse, el frontend guarda:
+
+```text
+plania_token
+plania_user
+```
+
+en `localStorage`.
+
+Cada peticion protegida envia:
+
+```text
+Authorization: Bearer TOKEN
+```
+
+Si el backend responde `401`, el frontend limpia la sesion y redirige a `login.html`.
+
+## Algoritmo De Recomendacion
+
+Plania calcula un `smartScore` para tareas `PENDING` y `POSTPONED`.
 
 Reglas principales:
 
@@ -258,172 +272,101 @@ Dura menos de 30 minutos: +5
 Dura mas de 120 minutos y usuario cansado: -10
 ```
 
-Si el usuario no registro estado de animo hoy, Plania usa `NORMAL`.
-
-## Probar Dashboard
-
-Obtener resumen diario:
-
-```http
-GET http://localhost:8080/api/dashboard/today
-Authorization: Bearer TOKEN_AQUI
-```
-
-La respuesta incluye:
-
-```text
-greeting
-currentDate
-todayMood
-pendingTasks
-completedTasksToday
-completedTasksTotal
-totalPoints
-currentStreak
-recommendedTask
-todayTasks
-motivationalMessage
-```
-
-El dashboard reutiliza el algoritmo de recomendacion. Si no hay tareas pendientes o aplazadas, `recommendedTask` devuelve `null`.
+Si no hay mood registrado hoy, Plania usa `NORMAL`.
 
 ## Frontend
 
-Fase 7 del frontend: responsive y mejora visual con pulido movil, navegacion inferior, modales, focus states, botones y fondos mas sobrios.
+El frontend incluye:
 
-Archivos creados:
+- Portada moderna.
+- Login y registro.
+- Dashboard diario.
+- Selector de estado de animo.
+- Recomendacion inteligente.
+- Gestion de tareas.
+- Buscador y filtros.
+- Modales para crear, editar y eliminar tareas.
+- Estadisticas.
+- Perfil editable.
+- Toast notifications.
+- Loading, error y empty states.
+- Sidebar en escritorio.
+- Bottom navigation en movil.
+- Boton flotante movil.
 
-```text
-frontend/
-  assets/
-    icons/
-    images/
-      plania-hero.png
-  css/
-    auth.css
-    dashboard.css
-    profile.css
-    stats.css
-    tasks.css
-    styles.css
-    responsive.css
-  js/
-    api.js
-    auth.js
-    dashboard.js
-    profile.js
-    session.js
-    stats.js
-    tasks.js
-    storage.js
-    ui.js
-  index.html
-  dashboard.html
-  login.html
-  profile.html
-  register.html
-  stats.html
-  tasks.html
+## Validaciones
+
+Backend:
+
+- DTOs con Jakarta Validation.
+- Emails validos.
+- Password minimo.
+- Fechas y campos obligatorios.
+- Tareas asociadas al usuario autenticado.
+
+Frontend:
+
+- Login y registro.
+- Crear y editar tareas.
+- Editar perfil.
+- Mensajes visuales por campo.
+- Manejo de errores del backend.
+
+## Errores Comunes
+
+PostgreSQL no conecta:
+
+- Verifica que PostgreSQL este iniciado.
+- Verifica que exista `plania_db`.
+- Revisa usuario y password en `application.properties`.
+
+Login falla:
+
+- Verifica que el backend este corriendo en `http://localhost:8080`.
+- Verifica que el usuario exista.
+- Si usas usuario demo, ejecuta el backend con perfil `dev`.
+
+Frontend muestra error al cargar dashboard:
+
+- Verifica que haya token en `localStorage`.
+- Verifica que el backend este activo.
+- Vuelve a iniciar sesion.
+
+El navegador bloquea peticiones:
+
+- Usa el servidor local del frontend en `http://127.0.0.1:5500`.
+- El backend tiene CORS preparado para `localhost:5500` y `127.0.0.1:5500`.
+
+## Verificaciones
+
+Backend:
+
+```bash
+cd C:\Users\migue\Desktop\Plania\backend
+mvn test
 ```
 
-Para abrir la portada, usa el archivo:
+Frontend:
 
-```text
-frontend/index.html
+```bash
+cd C:\Users\migue\Desktop\Plania
+node --check frontend\js\api.js
+node --check frontend\js\auth.js
+node --check frontend\js\dashboard.js
+node --check frontend\js\tasks.js
+node --check frontend\js\stats.js
+node --check frontend\js\profile.js
+node --check frontend\js\session.js
+node --check frontend\js\storage.js
+node --check frontend\js\ui.js
 ```
 
-Tambien puedes usar la extension Live Server de VS Code sobre la carpeta `frontend`.
+## Mejoras Futuras
 
-Pantallas de autenticacion:
-
-```text
-frontend/login.html
-frontend/register.html
-```
-
-El frontend espera el backend en:
-
-```text
-http://localhost:8080/api
-```
-
-Cuando el login o registro es exitoso, guarda:
-
-```text
-plania_token
-plania_user
-```
-
-en `localStorage` y redirige a `dashboard.html`, que se construira en la siguiente fase del frontend.
-
-Dashboard:
-
-```text
-frontend/dashboard.html
-```
-
-Consume estos endpoints:
-
-```text
-GET   /api/dashboard/today
-POST  /api/moods
-PATCH /api/tasks/{id}/complete
-PATCH /api/tasks/{id}/postpone
-```
-
-El dashboard requiere token JWT en `localStorage`. Si no hay sesion, redirige a `login.html`.
-
-Gestion de tareas:
-
-```text
-frontend/tasks.html
-```
-
-Consume estos endpoints:
-
-```text
-GET    /api/tasks
-POST   /api/tasks
-PUT    /api/tasks/{id}
-DELETE /api/tasks/{id}
-PATCH  /api/tasks/{id}/complete
-PATCH  /api/tasks/{id}/postpone
-```
-
-Incluye buscador, filtros por estado, prioridad, categoria y fecha, modal de crear/editar tarea, confirmacion de eliminacion y boton flotante en movil.
-
-API y sesion:
-
-```text
-frontend/js/api.js
-frontend/js/storage.js
-frontend/js/session.js
-```
-
-`api.js` centraliza las peticiones a `http://localhost:8080/api`, agrega automaticamente `Authorization: Bearer TOKEN`, maneja errores de red, respuestas sin JSON y errores HTTP.
-
-`storage.js` guarda y lee `plania_token` y `plania_user` desde `localStorage`.
-
-`session.js` protege paginas privadas, redirige si no hay token, limpia la sesion si el backend responde `401` y reutiliza el logout.
-
-Estadisticas y perfil:
-
-```text
-frontend/stats.html
-frontend/profile.html
-```
-
-`stats.html` calcula tareas completadas hoy, completadas en la semana, puntos, racha, promedio diario, categoria mas trabajada, estado de animo mas frecuente y distribucion por estado.
-
-`profile.html` muestra nombre, correo, fecha de creacion, puntos, racha, permite editar nombre/correo y cerrar sesion.
-
-Mejora responsive y visual:
-
-- Navegacion inferior movil mas estable con soporte para `safe-area`.
-- Boton flotante movil mejorado para crear tareas.
-- Modales optimizados para pantallas pequenas.
-- Focus states accesibles en botones, enlaces y formularios.
-- Ajustes de espaciado y tipografia en mobile.
-- Tarjetas con hover mas suave.
-- Fondos internos mas sobrios para pantallas de trabajo.
-- Portada ajustada para mejor encuadre en celular.
+- CRUD completo de categorias en frontend.
+- Subtareas y modo anti-procrastinacion completo en frontend.
+- Gamificacion mas avanzada.
+- Graficos reales para estadisticas.
+- Tests automatizados backend y frontend.
+- Despliegue en la nube.
+- Refresh tokens o blacklist para logout JWT avanzado.
