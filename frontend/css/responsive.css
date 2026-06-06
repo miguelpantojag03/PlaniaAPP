@@ -1,0 +1,106 @@
+@media (max-width: 900px) {
+    .site-header {
+        height: 70px;
+        padding-inline: 20px;
+    }
+
+    .hero-section {
+        min-height: 86svh;
+        padding-top: 122px;
+        padding-bottom: 70px;
+    }
+
+    .hero-overlay {
+        background:
+            linear-gradient(180deg, rgba(245, 247, 251, 0.96) 0%, rgba(245, 247, 251, 0.84) 46%, rgba(245, 247, 251, 0.7) 100%),
+            linear-gradient(0deg, rgba(245, 247, 251, 0.94), rgba(245, 247, 251, 0));
+    }
+
+    .feature-grid,
+    .preview-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .preview-copy {
+        max-width: 720px;
+    }
+}
+
+@media (max-width: 680px) {
+    .header-actions .button-ghost {
+        display: none;
+    }
+
+    .brand-mark {
+        width: 34px;
+        height: 34px;
+    }
+
+    .hero-section {
+        min-height: 84svh;
+        padding-inline: 18px;
+    }
+
+    .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .button-large {
+        width: 100%;
+    }
+
+    .feature-band,
+    .preview-band {
+        padding: 62px 18px;
+    }
+
+    .feature-card {
+        min-height: auto;
+        padding: 20px;
+    }
+
+    .app-preview {
+        min-height: 330px;
+        padding: 16px;
+        border-radius: 18px;
+    }
+
+    .preview-summary-row {
+        grid-template-columns: 1fr;
+    }
+
+    .preview-summary-row span {
+        height: 56px;
+    }
+}
+
+@media (max-width: 420px) {
+    .site-header {
+        padding-inline: 14px;
+    }
+
+    .brand {
+        font-size: 1rem;
+    }
+
+    .header-actions .button-primary {
+        min-height: 38px;
+        padding-inline: 14px;
+        font-size: 0.92rem;
+    }
+
+    h1 {
+        font-size: 3.4rem;
+    }
+
+    .hero-phrase {
+        font-size: 1.22rem;
+    }
+
+    .hero-copy {
+        font-size: 1rem;
+    }
+}

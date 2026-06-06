@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Plania</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="app-body">
+    <aside class="app-sidebar" aria-label="Navegacion principal">
+        <a class="brand app-brand" href="dashboard.html">
+            <span class="brand-mark">P</span>
+            <span>Plania</span>
+        </a>
+
+        <nav class="sidebar-nav">
+            <a class="nav-item active" href="dashboard.html">Inicio</a>
+            <a class="nav-item" href="tasks.html">Tareas</a>
+            <a class="nav-item" href="stats.html">Estadisticas</a>
+            <a class="nav-item" href="profile.html">Perfil</a>
+        </nav>
+
+        <button id="logoutButton" class="button button-ghost logout-button" type="button">Cerrar sesion</button>
+    </aside>
+
+    <main class="app-main">
+        <header class="dashboard-header">
+            <div>
+                <p class="eyebrow">Plan del dia</p>
+                <h1 id="dashboardGreeting">Hola. Este es tu plan para hoy.</h1>
+                <p id="dashboardDate" class="dashboard-date"></p>
+            </div>
+            <a class="button button-primary" href="tasks.html">Nueva tarea</a>
+        </header>
+
+        <section id="dashboardLoading" class="loading-state">
+            <span class="page-spinner" aria-hidden="true"></span>
+            <p>Cargando tu plan inteligente...</p>
+        </section>
+
+        <section id="dashboardError" class="empty-state hidden">
+            <h2>No pudimos cargar tu dashboard</h2>
+            <p>Verifica que el backend este corriendo e intenta nuevamente.</p>
+            <button id="retryButton" class="button button-primary" type="button">Intentar de nuevo</button>
+        </section>
+
+        <section id="dashboardContent" class="dashboard-content hidden">
+            <div class="summary-grid">
+                <article class="summary-card">
+                    <span class="summary-label">Pendientes</span>
+                    <strong id="pendingTasks">0</strong>
+                    <small>Tareas activas</small>
+                </article>
+                <article class="summary-card">
+                    <span class="summary-label">Completadas hoy</span>
+                    <strong id="completedToday">0</strong>
+                    <small>Progreso diario</small>
+                </article>
+                <article class="summary-card">
+                    <span class="summary-label">Puntos</span>
+                    <strong id="totalPoints">0</strong>
+                    <small>Acumulados</small>
+                </article>
+                <article class="summary-card">
+                    <span class="summary-label">Racha</span>
+                    <strong id="currentStreak">0</strong>
+                    <small>Dias activos</small>
+                </article>
+            </div>
+
+            <div class="dashboard-grid">
+                <section class="panel recommendation-panel" aria-labelledby="recommendationTitle">
+                    <div class="panel-header">
+                        <div>
+                            <p class="eyebrow">Recomendacion inteligente</p>
+                            <h2 id="recommendationTitle">Que hacer primero</h2>
+                        </div>
+                    </div>
+                    <div id="recommendationCard"></div>
+                </section>
+
+                <section class="panel mood-panel" aria-labelledby="moodTitle">
+                    <div class="panel-header">
+                        <div>
+                            <p class="eyebrow">Estado de animo</p>
+                            <h2 id="moodTitle">Como te sientes hoy?</h2>
+                        </div>
+                    </div>
+                    <div id="moodSelector" class="mood-grid" role="radiogroup" aria-label="Estado de animo de hoy"></div>
+                </section>
+            </div>
+
+            <section class="panel today-panel" aria-labelledby="todayTasksTitle">
+                <div class="panel-header">
+                    <div>
+                        <p class="eyebrow">Agenda</p>
+                        <h2 id="todayTasksTitle">Tareas de hoy</h2>
+                    </div>
+                    <p id="motivationalMessage" class="panel-note"></p>
+                </div>
+                <div id="todayTasksList" class="task-list"></div>
+            </section>
+        </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegacion movil">
+        <a class="active" href="dashboard.html">Inicio</a>
+        <a href="tasks.html">Tareas</a>
+        <a href="stats.html">Stats</a>
+        <a href="profile.html">Perfil</a>
+    </nav>
+
+    <div id="toastHost" class="toast-host" aria-live="polite"></div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

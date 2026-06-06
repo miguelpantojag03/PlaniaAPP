@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plania es una agenda inteligente que te ayuda a decidir que hacer primero segun tu energia, prioridades y metas.">
+    <title>Plania | Agenda inteligente</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="index.html" aria-label="Ir al inicio de Plania">
+            <span class="brand-mark">P</span>
+            <span>Plania</span>
+        </a>
+
+        <nav class="header-actions" aria-label="Acciones principales">
+            <a class="button button-ghost" href="login.html">Iniciar sesion</a>
+            <a class="button button-primary" href="register.html">Crear cuenta</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section" aria-labelledby="hero-title">
+            <img class="hero-image" src="assets/images/plania-hero.png" alt="Escritorio moderno con calendario inteligente, tarjetas de tareas e indicadores de energia.">
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+                <p class="eyebrow">Agenda inteligente personalizada</p>
+                <h1 id="hero-title">Plania</h1>
+                <p class="hero-phrase">Plania no solo te recuerda tus tareas, te ayuda a decidir que hacer primero.</p>
+                <p class="hero-copy">Organiza tu dia segun tu energia, prioridades y metas, sin perder tiempo pensando por donde empezar.</p>
+
+                <div class="hero-actions">
+                    <a class="button button-primary button-large" href="register.html">Crear cuenta</a>
+                    <a class="button button-light button-large" href="login.html">Iniciar sesion</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="feature-band" aria-label="Beneficios de Plania">
+            <div class="section-shell">
+                <div class="section-heading">
+                    <p class="eyebrow">Pensada para dias reales</p>
+                    <h2>Una agenda que entiende prioridad, energia y contexto.</h2>
+                </div>
+
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <span class="feature-icon">01</span>
+                        <h3>Prioriza mejor</h3>
+                        <p>Combina fecha limite, urgencia y tiempo estimado para ayudarte a elegir la siguiente tarea.</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <span class="feature-icon">02</span>
+                        <h3>Cuida tu energia</h3>
+                        <p>El estado de animo diario influye en las recomendaciones para que avances con menos friccion.</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <span class="feature-icon">03</span>
+                        <h3>Mantiene impulso</h3>
+                        <p>Puntos, rachas y mensajes breves convierten el progreso diario en algo visible.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="preview-band" aria-label="Vista general de la aplicacion">
+            <div class="section-shell preview-layout">
+                <div class="preview-copy">
+                    <p class="eyebrow">Tu plan del dia</p>
+                    <h2>Menos caos, mas decision.</h2>
+                    <p>El dashboard reunira tus tareas de hoy, recomendacion inteligente, puntos, racha y estado de animo en una sola vista.</p>
+                </div>
+
+                <div class="app-preview" aria-hidden="true">
+                    <div class="preview-topbar"></div>
+                    <div class="preview-summary-row">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="preview-recommendation"></div>
+                    <div class="preview-task-list">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

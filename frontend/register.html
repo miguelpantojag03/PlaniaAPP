@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear cuenta | Plania</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="auth-page">
+    <main class="auth-shell auth-shell-reverse">
+        <section class="auth-panel" aria-labelledby="register-title">
+            <div class="auth-card">
+                <div class="auth-card-header">
+                    <p class="eyebrow">Nueva cuenta</p>
+                    <h2 id="register-title">Crear cuenta</h2>
+                    <p>Empieza a organizar tu dia segun tus prioridades, energia y metas.</p>
+                </div>
+
+                <form id="registerForm" class="auth-form" novalidate>
+                    <div class="form-field">
+                        <label for="name">Nombre completo</label>
+                        <input id="name" name="name" type="text" autocomplete="name" placeholder="Tu nombre">
+                        <small class="field-error" data-error-for="name"></small>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="email">Correo electronico</label>
+                        <input id="email" name="email" type="email" autocomplete="email" placeholder="tu@correo.com">
+                        <small class="field-error" data-error-for="email"></small>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label for="password">Contrasena</label>
+                            <input id="password" name="password" type="password" autocomplete="new-password" placeholder="Minimo 8 caracteres">
+                            <small class="field-error" data-error-for="password"></small>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="confirmPassword">Confirmar</label>
+                            <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" placeholder="Repite tu contrasena">
+                            <small class="field-error" data-error-for="confirmPassword"></small>
+                        </div>
+                    </div>
+
+                    <button class="button button-primary button-full" type="submit">
+                        <span class="button-text">Crear cuenta</span>
+                        <span class="button-loader" aria-hidden="true"></span>
+                    </button>
+                </form>
+
+                <p class="auth-switch">Ya tienes cuenta? <a href="login.html">Iniciar sesion</a></p>
+            </div>
+        </section>
+
+        <section class="auth-visual" aria-label="Beneficios de Plania">
+            <a class="brand auth-brand" href="index.html">
+                <span class="brand-mark">P</span>
+                <span>Plania</span>
+            </a>
+            <div class="auth-visual-content">
+                <p class="eyebrow">Agenda inteligente</p>
+                <h1>Organiza tu dia sin pelear con tu lista de tareas.</h1>
+                <p>Registra tu estado de animo, crea tareas y deja que Plania te sugiera por donde empezar.</p>
+            </div>
+        </section>
+    </main>
+
+    <div id="toastHost" class="toast-host" aria-live="polite"></div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
