@@ -5,6 +5,12 @@
     margin-bottom: 22px;
 }
 
+.task-toolbar.panel {
+    position: sticky;
+    top: 14px;
+    z-index: 6;
+}
+
 .search-field,
 .compact-field {
     display: grid;
@@ -34,6 +40,12 @@
     color: var(--color-text);
     outline: none;
     transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.search-field input::placeholder,
+.task-form input::placeholder,
+.task-form textarea::placeholder {
+    color: #94a3b8;
 }
 
 .task-form textarea {
@@ -181,6 +193,12 @@
     color: var(--color-muted);
     font-weight: 900;
     cursor: pointer;
+    transition: background-color 180ms ease, color 180ms ease;
+}
+
+.icon-button:hover {
+    background: #eef2ff;
+    color: var(--color-primary-strong);
 }
 
 .task-form {
@@ -227,6 +245,12 @@
     font-weight: 600;
     line-height: 1;
     cursor: pointer;
+    transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.floating-action:hover {
+    transform: translateY(-2px);
+    background: var(--color-primary-strong);
 }
 
 @keyframes modal-in {
@@ -243,6 +267,7 @@
 @media (max-width: 980px) {
     .task-toolbar {
         grid-template-columns: 1fr;
+        position: static;
     }
 }
 
@@ -267,5 +292,26 @@
 
     .modal-actions .button {
         width: 100%;
+    }
+
+    .modal-backdrop {
+        align-items: end;
+        padding: 12px;
+    }
+
+    .modal-card {
+        width: 100%;
+        max-height: calc(92svh - env(safe-area-inset-bottom));
+        border-radius: 18px 18px 12px 12px;
+    }
+}
+
+@media (max-width: 420px) {
+    .task-toolbar {
+        padding: 16px;
+    }
+
+    .modal-card {
+        padding: 18px;
     }
 }

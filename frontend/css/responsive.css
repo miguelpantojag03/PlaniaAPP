@@ -10,6 +10,10 @@
         padding-bottom: 70px;
     }
 
+    .hero-image {
+        object-position: 58% center;
+    }
+
     .hero-overlay {
         background:
             linear-gradient(180deg, rgba(245, 247, 251, 0.96) 0%, rgba(245, 247, 251, 0.84) 46%, rgba(245, 247, 251, 0.7) 100%),
@@ -41,6 +45,10 @@
         padding-inline: 18px;
     }
 
+    .hero-content {
+        width: 100%;
+    }
+
     .hero-actions {
         align-items: stretch;
         flex-direction: column;
@@ -55,6 +63,10 @@
     .feature-band,
     .preview-band {
         padding: 62px 18px;
+    }
+
+    .section-heading {
+        margin-bottom: 24px;
     }
 
     .feature-card {
@@ -96,11 +108,20 @@
         font-size: 3.4rem;
     }
 
+    h2 {
+        font-size: 1.85rem;
+        line-height: 1.12;
+    }
+
     .hero-phrase {
         font-size: 1.22rem;
     }
 
     .hero-copy {
         font-size: 1rem;
+    }
+
+    .hero-section {
+        padding-bottom: 54px;
     }
 }

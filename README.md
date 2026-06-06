@@ -289,7 +289,7 @@ El dashboard reutiliza el algoritmo de recomendacion. Si no hay tareas pendiente
 
 ## Frontend
 
-Fase 6 del frontend: estadisticas y perfil con metricas calculadas desde tareas, historial de animo y datos del usuario.
+Fase 7 del frontend: responsive y mejora visual con pulido movil, navegacion inferior, modales, focus states, botones y fondos mas sobrios.
 
 Archivos creados:
 
@@ -416,3 +416,14 @@ frontend/profile.html
 `stats.html` calcula tareas completadas hoy, completadas en la semana, puntos, racha, promedio diario, categoria mas trabajada, estado de animo mas frecuente y distribucion por estado.
 
 `profile.html` muestra nombre, correo, fecha de creacion, puntos, racha, permite editar nombre/correo y cerrar sesion.
+
+Mejora responsive y visual:
+
+- Navegacion inferior movil mas estable con soporte para `safe-area`.
+- Boton flotante movil mejorado para crear tareas.
+- Modales optimizados para pantallas pequenas.
+- Focus states accesibles en botones, enlaces y formularios.
+- Ajustes de espaciado y tipografia en mobile.
+- Tarjetas con hover mas suave.
+- Fondos internos mas sobrios para pantallas de trabajo.
+- Portada ajustada para mejor encuadre en celular.

@@ -58,3 +58,13 @@
         grid-template-columns: 1fr;
     }
 }
+
+@media (max-width: 520px) {
+    .metric-block {
+        min-height: 110px;
+    }
+
+    .bar-label {
+        font-size: 0.84rem;
+    }
+}

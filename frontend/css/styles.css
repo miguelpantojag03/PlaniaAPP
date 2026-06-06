@@ -69,6 +69,7 @@ img {
     background: rgba(255, 255, 255, 0.78);
     border-bottom: 1px solid rgba(229, 231, 235, 0.74);
     backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 }
 
 .brand {
@@ -111,8 +112,25 @@ img {
     transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
 }
 
+.button:focus-visible,
+.nav-item:focus-visible,
+.bottom-nav a:focus-visible,
+.mood-option:focus-visible,
+.icon-button:focus-visible,
+.floating-action:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid rgba(108, 99, 255, 0.32);
+    outline-offset: 2px;
+}
+
 .button:hover {
     transform: translateY(-1px);
+}
+
+.button:active {
+    transform: translateY(0);
 }
 
 .button-primary {
@@ -367,5 +385,7 @@ h3 {
     *::after {
         scroll-behavior: auto !important;
         transition: none !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
     }
 }
