@@ -94,9 +94,13 @@ public class TaskService {
     public TaskResponse updateTask(Long id, TaskUpdateRequest request, Long userId) {
         Task task = findTaskForUser(id, userId);
         Category category = findCategoryForUser(request.categoryId(), userId);
+        boolean wasCompleted = task.getStatus() == TaskStatus.COMPLETED;
         taskMapper.updateEntity(task, request, category);
 
-        if (request.status() == TaskStatus.COMPLETED && task.getCompletedAt() == null) {
+        if (request.status() == TaskStatus.COMPLETED && !wasCompleted) {
+            task.setCompletedAt(LocalDateTime.now());
+            addPointsForCompletedTask(task.getUser(), task.getPriority());
+        } else if (request.status() == TaskStatus.COMPLETED && task.getCompletedAt() == null) {
             task.setCompletedAt(LocalDateTime.now());
         }
 
@@ -178,7 +182,25 @@ public class TaskService {
         };
 
         user.setTotalPoints(user.getTotalPoints() + points);
-        user.setLastActivityDate(LocalDate.now());
+        updateUserStreak(user);
         userRepository.save(user);
+    }
+
+    private void updateUserStreak(User user) {
+        LocalDate today = LocalDate.now();
+        LocalDate lastActivityDate = user.getLastActivityDate();
+
+        if (lastActivityDate == null) {
+            user.setCurrentStreak(1);
+        } else if (lastActivityDate.isEqual(today)) {
+            user.setCurrentStreak(Math.max(user.getCurrentStreak(), 1));
+        } else if (lastActivityDate.isEqual(today.minusDays(1))) {
+            user.setCurrentStreak(user.getCurrentStreak() + 1);
+            user.setTotalPoints(user.getTotalPoints() + 10);
+        } else {
+            user.setCurrentStreak(1);
+        }
+
+        user.setLastActivityDate(today);
     }
 }

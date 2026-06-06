@@ -90,7 +90,7 @@ const PlaniaApi = (() => {
             method: "PUT",
             body: JSON.stringify(payload)
         }),
-        getDashboard: () => request("/dashboard/today"),
+        getDashboard: () => request("/dashboard"),
         getTasks: () => request("/tasks"),
         createTask: (payload) => request("/tasks", {
             method: "POST",

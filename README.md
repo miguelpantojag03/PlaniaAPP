@@ -227,6 +227,7 @@ GET /api/recommendations/best-task
 Dashboard:
 
 ```text
+GET /api/dashboard
 GET /api/dashboard/today
 ```
 

@@ -19,6 +19,13 @@ public class DashboardController {
         this.dashboardService = dashboardService;
     }
 
+    @GetMapping
+    public ResponseEntity<DashboardResponse> getDashboard(
+            @AuthenticationPrincipal CustomUserDetails currentUser
+    ) {
+        return ResponseEntity.ok(dashboardService.getTodayDashboard(currentUser.getId()));
+    }
+
     @GetMapping("/today")
     public ResponseEntity<DashboardResponse> getTodayDashboard(
             @AuthenticationPrincipal CustomUserDetails currentUser
