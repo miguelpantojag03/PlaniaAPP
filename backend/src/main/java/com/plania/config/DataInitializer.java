@@ -23,28 +23,26 @@ public class DataInitializer {
             PasswordEncoder passwordEncoder
     ) {
         return args -> {
-            if (userRepository.existsByEmail("demo@plania.com")) {
-                return;
-            }
+            User demoUser = userRepository.findByEmail("demo@plania.com")
+                    .orElseGet(() -> new User("Usuario Demo", "demo@plania.com", ""));
 
-            User demoUser = new User(
-                    "Usuario Demo",
-                    "demo@plania.com",
-                    passwordEncoder.encode("demo12345")
-            );
+            demoUser.setName("Usuario Demo");
+            demoUser.setPassword(passwordEncoder.encode("demo12345"));
             User savedUser = userRepository.save(demoUser);
 
-            List<Category> categories = List.of(
-                    new Category("Universidad", "#6366F1", savedUser),
-                    new Category("Trabajo", "#14B8A6", savedUser),
-                    new Category("Personal", "#F59E0B", savedUser),
-                    new Category("Salud", "#22C55E", savedUser),
-                    new Category("Finanzas", "#0EA5E9", savedUser),
-                    new Category("Hogar", "#A855F7", savedUser),
-                    new Category("Otro", "#64748B", savedUser)
-            );
-
-            categoryRepository.saveAll(categories);
+            createCategoryIfMissing(categoryRepository, savedUser, "Universidad", "#6366F1");
+            createCategoryIfMissing(categoryRepository, savedUser, "Trabajo", "#14B8A6");
+            createCategoryIfMissing(categoryRepository, savedUser, "Personal", "#F59E0B");
+            createCategoryIfMissing(categoryRepository, savedUser, "Salud", "#22C55E");
+            createCategoryIfMissing(categoryRepository, savedUser, "Finanzas", "#0EA5E9");
+            createCategoryIfMissing(categoryRepository, savedUser, "Hogar", "#A855F7");
+            createCategoryIfMissing(categoryRepository, savedUser, "Otro", "#64748B");
         };
+    }
+
+    private void createCategoryIfMissing(CategoryRepository categoryRepository, User user, String name, String color) {
+        if (!categoryRepository.existsByNameIgnoreCaseAndUserId(name, user.getId())) {
+            categoryRepository.save(new Category(name, color, user));
+        }
     }
 }
