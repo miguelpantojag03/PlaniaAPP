@@ -35,7 +35,7 @@ services:
       - key: PLANIA_JWT_SECRET
         generateValue: true
       - key: PLANIA_CORS_ALLOWED_ORIGINS
-        value: https://plania-app.vercel.app
+        value: https://frontend-nine-jade-16.vercel.app,https://frontend-55onsfgvm-miguelpantojag03s-projects.vercel.app
 
 databases:
   - name: plania-db
