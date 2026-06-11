@@ -122,8 +122,8 @@ function validateRegister(form, payload, confirmPassword) {
     if (!payload.password) {
         PlaniaUI.setFieldError(form, "password", "La contrasena es obligatoria.");
         isValid = false;
-    } else if (payload.password.length < 8) {
-        PlaniaUI.setFieldError(form, "password", "Usa minimo 8 caracteres.");
+    } else if (payload.password.length < 6) {
+        PlaniaUI.setFieldError(form, "password", "Usa minimo 6 caracteres.");
         isValid = false;
     }
 

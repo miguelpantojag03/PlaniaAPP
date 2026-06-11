@@ -1,5 +1,5 @@
 const PlaniaApi = (() => {
-    const API_BASE_URL = "http://localhost:8080/api";
+    const API_BASE_URL = window.PLANIA_API_BASE_URL || "http://localhost:8080/api";
 
     async function request(path, options = {}) {
         const token = PlaniaStorage.getToken();
@@ -108,6 +108,8 @@ const PlaniaApi = (() => {
             body: JSON.stringify(payload)
         }),
         getMoodHistory: () => request("/moods/history"),
+        getTodayRecommendations: () => request("/recommendations/today"),
+        getBestRecommendation: () => request("/recommendations/best-task"),
         completeTask: (id) => request(`/tasks/${id}/complete`, {
             method: "PATCH"
         }),

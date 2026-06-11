@@ -3,6 +3,7 @@ package com.plania.exception;
 import com.plania.dto.error.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MissingRequestHeaderException;
@@ -48,6 +49,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleTypeMismatch(MethodArgumentTypeMismatchException exception, HttpServletRequest request) {
         String message = "Invalid value for parameter: " + exception.getName();
         return buildResponse(HttpStatus.BAD_REQUEST, message, request.getRequestURI(), null);
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ErrorResponse> handleUnreadableMessage(HttpMessageNotReadableException exception, HttpServletRequest request) {
+        return buildResponse(HttpStatus.BAD_REQUEST, "Invalid request body or enum value", request.getRequestURI(), null);
     }
 
     @ExceptionHandler(Exception.class)

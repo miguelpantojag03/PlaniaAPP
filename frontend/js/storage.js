@@ -17,7 +17,12 @@ const PlaniaStorage = (() => {
 
     function getUser() {
         const rawUser = localStorage.getItem(USER_KEY);
-        return rawUser ? JSON.parse(rawUser) : null;
+        try {
+            return rawUser ? JSON.parse(rawUser) : null;
+        } catch (error) {
+            clearSession();
+            return null;
+        }
     }
 
     function clearSession() {
@@ -26,7 +31,29 @@ const PlaniaStorage = (() => {
     }
 
     function isAuthenticated() {
-        return Boolean(getToken());
+        const token = getToken();
+        if (!token) {
+            return false;
+        }
+
+        if (isTokenExpired(token)) {
+            clearSession();
+            return false;
+        }
+
+        return true;
+    }
+
+    function isTokenExpired(token) {
+        try {
+            const payload = JSON.parse(atob(token.split(".")[1]));
+            if (!payload.exp) {
+                return false;
+            }
+            return payload.exp * 1000 <= Date.now();
+        } catch (error) {
+            return true;
+        }
     }
 
     return {

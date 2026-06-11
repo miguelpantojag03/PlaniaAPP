@@ -1,0 +1,42 @@
+services:
+  - type: web
+    name: plania-backend
+    runtime: docker
+    rootDir: backend
+    plan: free
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: PLANIA_DB_HOST
+        fromDatabase:
+          name: plania-db
+          property: host
+      - key: PLANIA_DB_PORT
+        fromDatabase:
+          name: plania-db
+          property: port
+      - key: PLANIA_DB_NAME
+        fromDatabase:
+          name: plania-db
+          property: database
+      - key: PLANIA_DB_USERNAME
+        fromDatabase:
+          name: plania-db
+          property: user
+      - key: PLANIA_DB_PASSWORD
+        fromDatabase:
+          name: plania-db
+          property: password
+      - key: PLANIA_DDL_AUTO
+        value: update
+      - key: PLANIA_SHOW_SQL
+        value: false
+      - key: PLANIA_FORMAT_SQL
+        value: false
+      - key: PLANIA_JWT_SECRET
+        generateValue: true
+      - key: PLANIA_CORS_ALLOWED_ORIGINS
+        value: https://plania-app.vercel.app
+
+databases:
+  - name: plania-db
+    plan: free

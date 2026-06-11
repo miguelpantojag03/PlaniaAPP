@@ -371,3 +371,12 @@ node --check frontend\js\ui.js
 - Tests automatizados backend y frontend.
 - Despliegue en la nube.
 - Refresh tokens o blacklist para logout JWT avanzado.
+
+## Defensa En Clase
+
+Documentos preparados para explicar arquitectura, estructuras de datos y patrones:
+
+```text
+docs/defensa-tecnica-plania.md
+docs/patrones-y-estructuras-resumen.md
+```

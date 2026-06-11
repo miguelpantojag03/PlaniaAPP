@@ -1,5 +1,7 @@
 package com.plania.security;
 
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -51,7 +53,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             }
-        } catch (RuntimeException exception) {
+        } catch (ExpiredJwtException exception) {
+            request.setAttribute("authErrorMessage", "Token expired");
+            SecurityContextHolder.clearContext();
+        } catch (JwtException | IllegalArgumentException exception) {
+            request.setAttribute("authErrorMessage", "Invalid token");
             SecurityContextHolder.clearContext();
         }
 

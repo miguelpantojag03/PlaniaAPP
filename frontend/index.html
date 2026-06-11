@@ -7,11 +7,11 @@
     <title>Plania | Agenda inteligente</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css?v=20260611-fix2">
+    <link rel="stylesheet" href="css/responsive.css?v=20260611-fix2">
 </head>
-<body>
+<body class="landing-page">
     <header class="site-header">
         <a class="brand" href="index.html" aria-label="Ir al inicio de Plania">
             <span class="brand-mark">P</span>
@@ -19,26 +19,76 @@
         </a>
 
         <nav class="header-actions" aria-label="Acciones principales">
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema">
+                <span data-theme-icon>Tema</span>
+            </button>
             <a class="button button-ghost" href="login.html">Iniciar sesion</a>
             <a class="button button-primary" href="register.html">Crear cuenta</a>
         </nav>
     </header>
 
     <main>
-        <section class="hero-section" aria-labelledby="hero-title">
-            <img class="hero-image" src="assets/images/plania-hero.png" alt="Escritorio moderno con calendario inteligente, tarjetas de tareas e indicadores de energia.">
-            <div class="hero-overlay"></div>
+        <section class="hero-section landing-hero" aria-labelledby="hero-title">
+            <img class="hero-bg" src="assets/images/plania-hero.png" alt="">
+            <div class="hero-scrim"></div>
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <p class="eyebrow">Agenda inteligente personalizada</p>
+                    <h1 id="hero-title">Plania</h1>
+                    <p class="hero-phrase">Plania no solo te recuerda tus tareas, te ayuda a decidir que hacer primero.</p>
+                    <p class="hero-copy">Organiza tu dia segun tu energia, prioridades y metas con un asistente que entiende urgencia, animo y tiempo disponible.</p>
 
-            <div class="hero-content">
-                <p class="eyebrow">Agenda inteligente personalizada</p>
-                <h1 id="hero-title">Plania</h1>
-                <p class="hero-phrase">Plania no solo te recuerda tus tareas, te ayuda a decidir que hacer primero.</p>
-                <p class="hero-copy">Organiza tu dia segun tu energia, prioridades y metas, sin perder tiempo pensando por donde empezar.</p>
+                    <div class="hero-actions">
+                        <a class="button button-primary button-large" href="register.html">Crear cuenta</a>
+                        <a class="button button-light button-large" href="login.html">Iniciar sesion</a>
+                    </div>
 
-                <div class="hero-actions">
-                    <a class="button button-primary button-large" href="register.html">Crear cuenta</a>
-                    <a class="button button-light button-large" href="login.html">Iniciar sesion</a>
+                    <div class="hero-proof" aria-label="Indicadores de Plania">
+                        <span>Prioridad inteligente</span>
+                        <span>Modo enfoque</span>
+                        <span>Rachas y puntos</span>
+                    </div>
                 </div>
+
+                <section class="assistant-preview" aria-label="Vista previa de Plania">
+                    <div class="preview-panel">
+                        <div class="preview-header">
+                            <div>
+                                <span class="eyebrow">Centro de control</span>
+                                <h2>Tu plan de hoy</h2>
+                                <p>Este es tu plan inteligente para hoy.</p>
+                            </div>
+                            <span class="mood-pill">Energia media</span>
+                        </div>
+
+                        <div class="summary-row">
+                            <article><strong>7</strong><span>Pendientes</span></article>
+                            <article><strong>3</strong><span>Completadas</span></article>
+                            <article><strong>85</strong><span>SmartScore</span></article>
+                        </div>
+
+                        <article class="best-task-card">
+                            <span class="card-kicker">Tu proxima mejor tarea</span>
+                            <h3>Estudiar para el parcial</h3>
+                            <p>Te recomendamos esta tarea porque vence hoy, tiene prioridad alta y requiere energia media.</p>
+                            <div class="metadata-row">
+                                <span class="badge badge-priority-high">Alta prioridad</span>
+                                <span class="badge badge-energy">60 min</span>
+                                <span class="badge">Universidad</span>
+                            </div>
+                            <div class="card-actions">
+                                <a class="button button-secondary" href="login.html">Empezar</a>
+                                <a class="button button-ghost" href="login.html">Ver detalles</a>
+                            </div>
+                        </article>
+
+                        <div class="timeline-preview" aria-hidden="true">
+                            <span><strong>8:00</strong> Repasar apuntes</span>
+                            <span><strong>10:30</strong> Proyecto Plania</span>
+                            <span><strong>18:00</strong> Parcial</span>
+                        </div>
+                    </div>
+                </section>
             </div>
         </section>
 
@@ -46,55 +96,38 @@
             <div class="section-shell">
                 <div class="section-heading">
                     <p class="eyebrow">Pensada para dias reales</p>
-                    <h2>Una agenda que entiende prioridad, energia y contexto.</h2>
+                    <h2>Una app que combina prioridad, energia y contexto.</h2>
                 </div>
 
                 <div class="feature-grid">
                     <article class="feature-card">
                         <span class="feature-icon">01</span>
-                        <h3>Prioriza mejor</h3>
-                        <p>Combina fecha limite, urgencia y tiempo estimado para ayudarte a elegir la siguiente tarea.</p>
+                        <h3>Decide mas rapido</h3>
+                        <p>Ordena tus tareas por fecha limite, prioridad, energia requerida y tiempo estimado.</p>
                     </article>
-
                     <article class="feature-card">
                         <span class="feature-icon">02</span>
-                        <h3>Cuida tu energia</h3>
-                        <p>El estado de animo diario influye en las recomendaciones para que avances con menos friccion.</p>
+                        <h3>Se adapta a tu animo</h3>
+                        <p>Si estas cansado, te propone tareas cortas. Si tienes energia, te ayuda a avanzar fuerte.</p>
                     </article>
-
                     <article class="feature-card">
                         <span class="feature-icon">03</span>
-                        <h3>Mantiene impulso</h3>
-                        <p>Puntos, rachas y mensajes breves convierten el progreso diario en algo visible.</p>
+                        <h3>Convierte avance en habito</h3>
+                        <p>Puntos, rachas y estadisticas hacen visible tu progreso sin convertirlo en ruido.</p>
                     </article>
-                </div>
-            </div>
-        </section>
-
-        <section class="preview-band" aria-label="Vista general de la aplicacion">
-            <div class="section-shell preview-layout">
-                <div class="preview-copy">
-                    <p class="eyebrow">Tu plan del dia</p>
-                    <h2>Menos caos, mas decision.</h2>
-                    <p>El dashboard reunira tus tareas de hoy, recomendacion inteligente, puntos, racha y estado de animo en una sola vista.</p>
-                </div>
-
-                <div class="app-preview" aria-hidden="true">
-                    <div class="preview-topbar"></div>
-                    <div class="preview-summary-row">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <div class="preview-recommendation"></div>
-                    <div class="preview-task-list">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
                 </div>
             </div>
         </section>
     </main>
+
+    <nav class="mobile-bottom-nav" aria-label="Navegacion movil de ejemplo">
+        <a class="active" href="index.html">Inicio</a>
+        <a href="login.html">Tareas</a>
+        <a class="create-action" href="register.html" aria-label="Crear cuenta">+</a>
+        <a href="login.html">Stats</a>
+        <a href="login.html">Perfil</a>
+    </nav>
+
+    <script src="js/theme.js?v=20260611-fix2"></script>
 </body>
 </html>

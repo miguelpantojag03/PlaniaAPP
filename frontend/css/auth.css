@@ -1,5 +1,8 @@
 .auth-page {
-    background: linear-gradient(135deg, #f8fafc 0%, var(--color-background) 48%, #ecfdf5 100%);
+    background:
+        radial-gradient(circle at 12% 12%, rgba(15, 159, 143, 0.12), transparent 28rem),
+        radial-gradient(circle at 100% 0%, rgba(53, 92, 221, 0.1), transparent 30rem),
+        linear-gradient(135deg, #fbfdff 0%, var(--color-background) 48%, #edf8f5 100%);
 }
 
 .auth-shell {
@@ -20,7 +23,7 @@
     overflow: hidden;
     color: white;
     background:
-        linear-gradient(135deg, rgba(81, 70, 232, 0.92), rgba(0, 194, 168, 0.86)),
+        linear-gradient(135deg, rgba(32, 63, 168, 0.92), rgba(15, 159, 143, 0.86)),
         url("../assets/images/plania-hero.png") center / cover;
 }
 
@@ -28,9 +31,18 @@
     position: absolute;
     inset: 22px;
     content: "";
-    border: 1px solid rgba(255, 255, 255, 0.24);
+    border: 1px solid rgba(255, 255, 255, 0.26);
     border-radius: var(--radius-lg);
     pointer-events: none;
+}
+
+.auth-visual::before {
+    position: absolute;
+    inset: 0;
+    content: "";
+    background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.08), rgba(15, 23, 42, 0.42)),
+        radial-gradient(circle at 70% 18%, rgba(255, 255, 255, 0.18), transparent 18rem);
 }
 
 .auth-brand {
@@ -80,10 +92,11 @@
 .auth-card {
     width: min(100%, 480px);
     padding: 34px;
-    border: 1px solid rgba(229, 231, 235, 0.9);
+    border: 1px solid rgba(223, 231, 242, 0.95);
     border-radius: var(--radius-lg);
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.94);
     box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(12px);
 }
 
 .auth-card,
@@ -127,6 +140,7 @@
 .form-field label {
     font-size: 0.9rem;
     font-weight: 800;
+    color: #26344d;
 }
 
 .form-field input {
@@ -135,16 +149,16 @@
     padding: 0 14px;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
-    background: #f8fafc;
+    background: var(--color-surface-soft);
     color: var(--color-text);
     outline: none;
     transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
 }
 
 .form-field input:focus {
-    border-color: rgba(108, 99, 255, 0.72);
+    border-color: rgba(53, 92, 221, 0.72);
     background: white;
-    box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.12);
+    box-shadow: 0 0 0 4px rgba(53, 92, 221, 0.12);
 }
 
 .form-field input.is-invalid {
@@ -199,6 +213,11 @@
     font-weight: 800;
 }
 
+.auth-switch a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
 .toast-host {
     position: fixed;
     z-index: 30;
@@ -215,7 +234,7 @@
     border-left: 5px solid var(--color-primary);
     border-radius: var(--radius-sm);
     background: white;
-    box-shadow: var(--shadow-card);
+    box-shadow: var(--shadow-soft);
     color: var(--color-text);
     font-weight: 700;
     animation: toast-in 220ms ease both;

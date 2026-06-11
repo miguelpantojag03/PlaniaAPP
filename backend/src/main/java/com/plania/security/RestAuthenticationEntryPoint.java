@@ -24,11 +24,16 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
             throws IOException {
+        Object authErrorMessage = request.getAttribute("authErrorMessage");
+        String message = authErrorMessage instanceof String customMessage
+                ? customMessage
+                : "Unauthorized request";
+
         ErrorResponse errorResponse = new ErrorResponse(
                 LocalDateTime.now(),
                 HttpStatus.UNAUTHORIZED.value(),
                 HttpStatus.UNAUTHORIZED.getReasonPhrase(),
-                "Unauthorized request",
+                message,
                 request.getRequestURI(),
                 null
         );

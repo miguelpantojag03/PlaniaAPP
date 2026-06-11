@@ -91,11 +91,11 @@ public class RecommendationService {
         long daysUntilDue = ChronoUnit.DAYS.between(today, task.getDueDate());
 
         if (daysUntilDue < 0) {
-            score += 50;
+            score += 60;
             reason.append("esta vencida");
             hasReason = true;
         } else if (daysUntilDue == 0) {
-            score += 40;
+            score += 50;
             reason.append("vence hoy");
             hasReason = true;
         } else if (daysUntilDue == 1) {
@@ -110,33 +110,40 @@ public class RecommendationService {
 
         int priorityPoints = priorityPoints(task.getPriority());
         score += priorityPoints;
-        reason = appendReason(reason, hasReason, "tiene prioridad " + task.getPriority().name().toLowerCase());
+        reason = appendReason(reason, hasReason, "tiene prioridad " + priorityLabel(task.getPriority()));
         hasReason = true;
 
-        if (task.getPostponedCount() > 2) {
-            score += 15;
-            reason = appendReason(reason, hasReason, "ha sido aplazada varias veces");
+        if (task.getPostponedCount() > 0) {
+            int postponedPoints = Math.min(task.getPostponedCount() * 6, 24);
+            score += postponedPoints;
+            reason = appendReason(reason, hasReason, task.getPostponedCount() == 1
+                    ? "ya fue aplazada una vez"
+                    : "ha sido aplazada " + task.getPostponedCount() + " veces");
             hasReason = true;
         }
 
         int moodEnergyPoints = moodEnergyPoints(moodType, task.getEnergyRequired());
         score += moodEnergyPoints;
         if (moodEnergyPoints > 0) {
-            reason = appendReason(reason, hasReason, "su energia requerida encaja con tu estado de animo");
+            reason = appendReason(reason, hasReason, "requiere energia " + energyLabel(task.getEnergyRequired()) + " y encaja con tu estado de animo");
             hasReason = true;
         } else if (moodEnergyPoints < 0) {
-            reason = appendReason(reason, hasReason, "requiere mas energia de la ideal para tu estado actual");
+            reason = appendReason(reason, hasReason, "requiere energia " + energyLabel(task.getEnergyRequired()) + " y puede exigirte mas de lo ideal ahora");
             hasReason = true;
         }
 
-        if (task.getEstimatedMinutes() < 30) {
-            score += 5;
+        if (task.getEstimatedMinutes() <= 30) {
+            score += 8;
             reason = appendReason(reason, hasReason, "puede completarse rapido");
+            hasReason = true;
+        } else if (task.getEstimatedMinutes() <= 90) {
+            score += 4;
+            reason = appendReason(reason, hasReason, "tiene una duracion manejable");
             hasReason = true;
         }
 
         if (task.getEstimatedMinutes() > 120 && moodType == MoodType.TIRED) {
-            score -= 10;
+            score -= 15;
             reason = appendReason(reason, hasReason, "es larga para un dia de baja energia");
         }
 
@@ -156,16 +163,20 @@ public class RecommendationService {
     private int moodEnergyPoints(MoodType moodType, EnergyRequired energyRequired) {
         if ((moodType == MoodType.TIRED || moodType == MoodType.STRESSED || moodType == MoodType.UNMOTIVATED)
                 && energyRequired == EnergyRequired.LOW) {
-            return 10;
+            return 14;
         }
 
         if ((moodType == MoodType.TIRED || moodType == MoodType.STRESSED)
                 && energyRequired == EnergyRequired.HIGH) {
-            return -10;
+            return -14;
         }
 
         if (moodType == MoodType.ENERGETIC && energyRequired == EnergyRequired.HIGH) {
-            return 10;
+            return 14;
+        }
+
+        if (moodType == MoodType.NORMAL && energyRequired == EnergyRequired.MEDIUM) {
+            return 8;
         }
 
         return 0;
@@ -189,6 +200,23 @@ public class RecommendationService {
         }
         reason.append(text);
         return reason;
+    }
+
+    private String priorityLabel(Priority priority) {
+        return switch (priority) {
+            case URGENT -> "urgente";
+            case HIGH -> "alta";
+            case MEDIUM -> "media";
+            case LOW -> "baja";
+        };
+    }
+
+    private String energyLabel(EnergyRequired energyRequired) {
+        return switch (energyRequired) {
+            case HIGH -> "alta";
+            case MEDIUM -> "media";
+            case LOW -> "baja";
+        };
     }
 
     private record ScoreResult(Integer score, String reason) {

@@ -14,7 +14,8 @@ const PlaniaSession = (() => {
     }
 
     function redirectIfAuthenticated() {
-        if (PlaniaStorage.isAuthenticated()) {
+        const params = new URLSearchParams(window.location.search);
+        if (!params.has("expired") && PlaniaStorage.isAuthenticated()) {
             window.location.href = "dashboard.html";
         }
     }

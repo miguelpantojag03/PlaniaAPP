@@ -1,3 +1,14 @@
+@media (max-width: 1080px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .assistant-preview {
+        min-height: auto;
+        max-width: 760px;
+    }
+}
+
 @media (max-width: 900px) {
     .site-header {
         height: 70px;
@@ -5,34 +16,41 @@
     }
 
     .hero-section {
-        min-height: 86svh;
-        padding-top: 122px;
+        min-height: auto;
+        padding-top: 118px;
         padding-bottom: 70px;
     }
 
-    .hero-image {
-        object-position: 58% center;
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 760px) {
+    .header-actions .button-ghost {
+        display: none;
     }
 
-    .hero-overlay {
-        background:
-            linear-gradient(180deg, rgba(245, 247, 251, 0.96) 0%, rgba(245, 247, 251, 0.84) 46%, rgba(245, 247, 251, 0.7) 100%),
-            linear-gradient(0deg, rgba(245, 247, 251, 0.94), rgba(245, 247, 251, 0));
-    }
-
-    .feature-grid,
-    .preview-layout {
+    .assistant-preview {
         grid-template-columns: 1fr;
     }
 
-    .preview-copy {
-        max-width: 720px;
+    .preview-sidebar {
+        display: none;
+    }
+
+    .preview-header {
+        flex-direction: column;
+    }
+
+    .summary-row {
+        grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 680px) {
-    .header-actions .button-ghost {
-        display: none;
+    body {
+        padding-bottom: 82px;
     }
 
     .brand-mark {
@@ -40,8 +58,19 @@
         height: 34px;
     }
 
+    .theme-toggle {
+        min-width: 58px;
+        min-height: 38px;
+        padding-inline: 10px;
+    }
+
+    .header-actions .button-primary {
+        min-height: 38px;
+        padding-inline: 14px;
+        font-size: 0.92rem;
+    }
+
     .hero-section {
-        min-height: 84svh;
         padding-inline: 18px;
     }
 
@@ -53,15 +82,27 @@
         align-items: stretch;
         flex-direction: column;
         width: 100%;
-        max-width: 320px;
+        max-width: 340px;
     }
 
     .button-large {
         width: 100%;
     }
 
-    .feature-band,
-    .preview-band {
+    .assistant-preview {
+        border-radius: 16px;
+    }
+
+    .preview-panel {
+        padding: 18px;
+    }
+
+    .best-task-card,
+    .feature-card {
+        padding: 20px;
+    }
+
+    .feature-band {
         padding: 62px 18px;
     }
 
@@ -69,23 +110,8 @@
         margin-bottom: 24px;
     }
 
-    .feature-card {
-        min-height: auto;
-        padding: 20px;
-    }
-
-    .app-preview {
-        min-height: 330px;
-        padding: 16px;
-        border-radius: 18px;
-    }
-
-    .preview-summary-row {
-        grid-template-columns: 1fr;
-    }
-
-    .preview-summary-row span {
-        height: 56px;
+    .mobile-bottom-nav {
+        display: grid;
     }
 }
 
@@ -98,14 +124,8 @@
         font-size: 1rem;
     }
 
-    .header-actions .button-primary {
-        min-height: 38px;
-        padding-inline: 14px;
-        font-size: 0.92rem;
-    }
-
     h1 {
-        font-size: 3.4rem;
+        font-size: 3.35rem;
     }
 
     h2 {
@@ -114,14 +134,26 @@
     }
 
     .hero-phrase {
-        font-size: 1.22rem;
+        font-size: 1.2rem;
     }
 
     .hero-copy {
         font-size: 1rem;
     }
 
-    .hero-section {
-        padding-bottom: 54px;
+    .metadata-row,
+    .card-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .card-actions .button {
+        width: 100%;
+    }
+
+    .mobile-bottom-nav {
+        right: 8px;
+        bottom: 8px;
+        left: 8px;
     }
 }
